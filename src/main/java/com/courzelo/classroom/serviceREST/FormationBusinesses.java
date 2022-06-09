@@ -1,15 +1,19 @@
 package com.courzelo.classroom.serviceREST;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 
 import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.Inscription;
+import com.courzelo.classroom.entities.Userr;
 import com.courzelo.classroom.entities.dtos.FormationDTO;
 import com.courzelo.classroom.repositories.FormationRepository;
 import com.courzelo.classroom.repositories.InscriptionRepository;
@@ -28,7 +32,11 @@ public class FormationBusinesses implements IServiceFormation {
           @Autowired
           private  SequenceGeneratorService sequenceGeneratorService;
 
-
+          @Autowired
+          RestTemplateBuilder restTemplateBuilder;
+          private static final String GET_USER_BY_ID_API = "http://localhost:8087/api/auth/getUser/{id}";
+          
+          
 	@Override
 	public List<FormationDTO> getList() {
 		List<Formation> formations= formationRepository.findAll();
@@ -37,13 +45,21 @@ public class FormationBusinesses implements IServiceFormation {
 	}
 
 	
+	
+	public Userr getUserByRestTemplate(long id){
+		Map<String, Long> param = new HashMap<>();
+		param.put("id", id);
+		Userr userr = restTemplateBuilder.build().getForObject(GET_USER_BY_ID_API, Userr.class, param);
+		return userr;
+}
+	
 
 	@Override
-	public FormationDTO addformation(FormationDTO f, String createur) {
+	public FormationDTO addformation(FormationDTO f, Long idUserr) {
 		  Formation formation = mapper.map(f, Formation.class);
 		   formation.setIdFormation(sequenceGeneratorService.generateSequence(Formation.SEQUENCE_NAME));
-		   formation.setInstructorname(createur);
-		   formation.setTest(true);;
+		   formation.setTest(true);
+		   formation.setIdUserr(idUserr);
 	       Formation newFormation = formationRepository.save(formation);
 	       
 	       FormationDTO responseFormation = mapper.map(newFormation, FormationDTO.class);
@@ -107,8 +123,8 @@ public class FormationBusinesses implements IServiceFormation {
 
 
 	@Override
-	public List<FormationDTO> getFormtionByIdCreator(String id) {
-		List<Formation> formations=formationRepository.findByinstructorname(id);
+	public List<FormationDTO> getFormtionByIdCreator(Long id) {
+		List<Formation> formations=formationRepository.findByIdUserr(id);
 		 return formations.stream().map(formation -> mapper.map(formation, FormationDTO.class))
 					.collect(Collectors.toList());
 	}
@@ -116,9 +132,9 @@ public class FormationBusinesses implements IServiceFormation {
 
 
 	@Override
-	public List<FormationDTO> getFormtionByTest(Boolean test,String id) {
+	public List<FormationDTO> getFormtionByTest(Boolean test,Long id) {
 	
-		List<Formation> formations= formationRepository.findByTestAndInstructorname(test,id);
+		List<Formation> formations= formationRepository.findByTestAndIdUserr(test, id);
 		return formations.stream().map(formation -> mapper.map(formation, FormationDTO.class))
 				.collect(Collectors.toList());
 	}

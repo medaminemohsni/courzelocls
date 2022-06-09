@@ -29,10 +29,10 @@ public class FormationController {
 	@Autowired
 	private IServiceFormation iFormation;
 	
-	@PostMapping("/{id}")
+	@PostMapping("/{idUserr}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<FormationDTO> createFormation(@RequestBody FormationDTO formation ,@PathVariable("id") String id){
-		formation=iFormation.addformation(formation, id);
+	public ResponseEntity<FormationDTO> createFormation(@RequestBody FormationDTO formation ,@PathVariable("idUserr") Long idUserr)throws Exception {
+		formation=iFormation.addformation(formation, idUserr);
 		return new ResponseEntity<>(formation, HttpStatus.OK);
 
 	}
@@ -45,7 +45,7 @@ public class FormationController {
 	
 	@GetMapping("creator/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<FormationDTO> getFormationBuCreator(@PathVariable("id") String id){
+	public List<FormationDTO> getFormationBuCreator(@PathVariable("id") Long id){
 		return iFormation.getFormtionByIdCreator(id);
 	}	
 	
@@ -64,7 +64,7 @@ public class FormationController {
 	
 	@GetMapping("coursA/{test}/user/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public  List<FormationDTO> getFormationByTest(@PathVariable(name = "test") Boolean test,@PathVariable(name = "id") String id){
+	public  List<FormationDTO> getFormationByTest(@PathVariable(name = "test") Boolean test,@PathVariable(name = "id") Long id){
 		return iFormation.getFormtionByTest(test, id);
 	}
 	

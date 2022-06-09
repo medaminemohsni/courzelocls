@@ -12,10 +12,10 @@ import com.courzelo.classroom.entities.dtos.FormationDTO;
 
 
 public interface IServiceFormation {
-	public FormationDTO addformation(FormationDTO f,String createur );
+	public FormationDTO addformation(FormationDTO f,Long idUserr );
 	public List<FormationDTO>getList();
-	public List<FormationDTO>getFormtionByIdCreator(String id);
-	public List<FormationDTO>getFormtionByTest(Boolean test,String id);
+	public List<FormationDTO>getFormtionByIdCreator(Long id);
+	public List<FormationDTO>getFormtionByTest(Boolean test,Long id);
 	public List<FormationDTO>getFormationByIdStudent(Long id);
 	public FormationDTO getFormationById(long idFormation); 
 	public FormationDTO UpdateFormation(long idFormation , FormationDTO RequestFormation); 

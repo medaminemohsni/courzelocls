@@ -13,9 +13,9 @@ import com.courzelo.classroom.entities.Formation;
 public interface FormationRepository extends MongoRepository<Formation, Integer> {
 	//this repository contain all operations of mongodb
 	public  Formation findByIdFormation(long idFormation);
-	public List<Formation> findByinstructorname(String idCreator);
+	public List<Formation> findByIdUserr(Long idCreator);
 	
-	public List<Formation> findByTestAndInstructorname(Boolean test,String id);
+	public List<Formation> findByTestAndIdUserr(Boolean test,Long id);
 	
 	
 

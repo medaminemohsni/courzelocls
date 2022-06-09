@@ -31,6 +31,9 @@ public class Formation {
 	    @Field(value = "IdFormation")
 	    private long idFormation;
 
+	    @Field(value = "Userr")
+		private long idUserr;
+	  
 	    @Field(value = "Coursename")
 	    private String coursename;
 

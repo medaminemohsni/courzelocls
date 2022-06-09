@@ -19,7 +19,8 @@ import lombok.NoArgsConstructor;
 public class FormationDTO {
 	
 	
-	public long id ;
+
+	public long idUserr;
 	public String coursename;
 	public Date date;
 	public String category;
@@ -30,8 +31,6 @@ public class FormationDTO {
 	public String descriptiontrainer;
 	public float price;
 	private List<String> idQuiz;
-    
- 
 	public Boolean test;
 	
 }  

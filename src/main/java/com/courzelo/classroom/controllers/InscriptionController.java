@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.courzelo.classroom.businesses.iservices.IServiceInscription;
-import com.courzelo.classroom.entities.User;
+import com.courzelo.classroom.entities.Userr;
 import com.courzelo.classroom.entities.dtos.InscriptionDTO;
 
 @CrossOrigin
@@ -32,13 +32,13 @@ public class InscriptionController {
 		return new ResponseEntity<>(inscription, HttpStatus.OK);
 
 	}
+	
 	@GetMapping("/{idFormation}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public List<User>  getInscriptionUser(@PathVariable("idFormation") Long idFormation){
+	public List<Userr>  getInscriptionUserr(@PathVariable("idFormation") Long idFormation){
 		return iInscription.getListInscription(idFormation);
 
 	}
-
 
 
 
