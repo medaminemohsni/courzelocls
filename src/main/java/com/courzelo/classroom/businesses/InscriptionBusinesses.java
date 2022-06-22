@@ -44,7 +44,7 @@ public class InscriptionBusinesses implements IServiceInscription {
 		List<Userr> users=new  ArrayList<Userr>();
 		List<Inscription> inscriptions=inscriptionRepository.findByIdFormation(id);
                 for(Inscription i:inscriptions) {
-                	Userr user=formationService.getUserByRestTemplate(id);
+                	Userr user=formationService.getUserByRestTemplate(i.getIdEtudiant());
                 	users.add(user);
                 }
 		return users;

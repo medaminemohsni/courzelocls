@@ -54,10 +54,10 @@ public class PhaseController {
 	
 	@PostMapping("/{idSection}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PhaseDTO> createPhase(@RequestParam("imageFile") MultipartFile file,@RequestParam("user") String phaseDto ,@PathVariable("idSection") long idSection) throws IOException{
-		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+	public ResponseEntity<PhaseDTO> createPhase(/*@RequestParam("imageFile") MultipartFile file,*/@RequestParam("user") String phaseDto ,@PathVariable("idSection") long idSection) throws IOException{
+		//System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		Phase  phase= new ObjectMapper().readValue(phaseDto, Phase.class);
-		phase.setFile(UploadImageService.compressBytes(file.getBytes()));
+		//phase.setFile(UploadImageService.compressBytes(file.getBytes()));
 		PhaseDTO responsePhase = mapper.map(phase, PhaseDTO.class);
 		   responsePhase =iPhase.addPhase(responsePhase,idSection);
 		return new ResponseEntity<>(responsePhase, HttpStatus.OK);
@@ -65,10 +65,10 @@ public class PhaseController {
 	}
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PhaseDTO> UpdatePhase(@RequestParam("imageFile") MultipartFile file,@RequestParam("user") String postDto ,@PathVariable("id") long id) throws IOException{
-		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+	public ResponseEntity<PhaseDTO> UpdatePhase(/*@RequestParam("imageFile") MultipartFile file,*/@RequestParam("user") String postDto ,@PathVariable("id") long id) throws IOException{
+		//System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		Phase post= new ObjectMapper().readValue(postDto, Phase.class);
-		post.setFile(UploadImageService.compressBytes(file.getBytes()));
+		//post.setFile(UploadImageService.compressBytes(file.getBytes()));
 	    PhaseDTO responsePhase = mapper.map(post, PhaseDTO.class);
 		responsePhase=iPhase.updatePhase(id, responsePhase);
 		return new ResponseEntity<>(responsePhase, HttpStatus.OK);
@@ -96,7 +96,7 @@ public class PhaseController {
 	public List<PhaseDTO> getPhaseByFormation(@PathVariable("id") long id){
 		List<PhaseDTO> postDto1=new ArrayList<PhaseDTO>();
 		List<PhaseDTO> postDto= iPhase.getPhaseByIdSection(id);
-		for(PhaseDTO p:postDto) {
+		/*for(PhaseDTO p:postDto) {
 			if(p.getFile()==null) {
 				postDto1.add(p);
 				System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjj"+"phase1");
@@ -108,7 +108,7 @@ public class PhaseController {
 			System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjj"+"phase");
 			}
 			
-		}
+		}*/
 		
 		return postDto;
 	}	

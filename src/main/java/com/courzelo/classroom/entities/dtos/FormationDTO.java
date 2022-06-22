@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class FormationDTO {
 	
 	
-
+	public long idFormation ;
 	public long idUserr;
 	public String coursename;
 	public Date date;

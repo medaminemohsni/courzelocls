@@ -19,7 +19,9 @@ import com.courzelo.classroom.repositories.FormationRepository;
 import com.courzelo.classroom.repositories.InscriptionRepository;
 import com.courzelo.classroom.serviceREST.iservicesREST.IServiceFormation;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class FormationBusinesses implements IServiceFormation {
 
@@ -105,18 +107,18 @@ public class FormationBusinesses implements IServiceFormation {
 
 
 	@Override
-	public List<FormationDTO> getFormationByIdStudent(Long id) {
+	public List<Formation> getFormationByIdStudent(Long id) {
 		List<Formation> formations=new ArrayList<Formation>();
 		List<Inscription> inscriptions= inscriptionRepository.findByIdEtudiant(id);
+		log.info("resultat ", formations, inscriptions);
 		for(Inscription i:inscriptions) {
 			Formation f=formationRepository.findByIdFormation(i.getIdFormation());
 			formations.add(f);
-			
+			log.info("resultat ", formations, inscriptions);
 			
 		}
 		System.out.println("fghjk"+formations);
-		return formations.stream().map(formation -> mapper.map(formation, FormationDTO.class))
-				.collect(Collectors.toList());
+		return formations;
 		
 	}
 

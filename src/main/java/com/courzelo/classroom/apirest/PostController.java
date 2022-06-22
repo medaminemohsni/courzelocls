@@ -52,10 +52,10 @@ public class PostController {
 	
 	@PostMapping("/{id}/formation/{idFormation}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PostDTO> createPost(@RequestParam("imageFile") MultipartFile file,@RequestParam("user") String postDto ,@PathVariable("id") long id,@PathVariable("idFormation") long idFormation) throws IOException{
-		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+	public ResponseEntity<PostDTO> createPost(/*@RequestParam("imageFile") MultipartFile file,*/@RequestParam("user") String postDto ,@PathVariable("id") long id,@PathVariable("idFormation") long idFormation) throws IOException{
+		//System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		Post post= new ObjectMapper().readValue(postDto, Post.class);
-		post.setFile(UploadImageService.compressBytes(file.getBytes()));
+		//post.setFile(UploadImageService.compressBytes(file.getBytes()));
 	    PostDTO responsePost = mapper.map(post, PostDTO.class);
 		responsePost=iPost.addpost(responsePost, id,idFormation);
 		return new ResponseEntity<>(responsePost, HttpStatus.OK);
@@ -63,10 +63,10 @@ public class PostController {
 	}
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PostDTO> UpdatePost(@RequestParam("imageFile") MultipartFile file,@RequestParam("user") String postDto ,@PathVariable("id") long id) throws IOException{
-		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+	public ResponseEntity<PostDTO> UpdatePost(/*@RequestParam("imageFile") MultipartFile file,*/@RequestParam("user") String postDto ,@PathVariable("id") long id) throws IOException{
+		//System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		Post post= new ObjectMapper().readValue(postDto, Post.class);
-		post.setFile(UploadImageService.compressBytes(file.getBytes()));
+		//post.setFile(UploadImageService.compressBytes(file.getBytes()));
 	    PostDTO responsePost = mapper.map(post, PostDTO.class);
 		responsePost=iPost.updatePost(id, responsePost);
 		return new ResponseEntity<>(responsePost, HttpStatus.OK);
@@ -97,11 +97,11 @@ public class PostController {
 	public List<PostDTO> getPostByFormation(@PathVariable("id") long id){
 		List<PostDTO> postDto=new ArrayList<PostDTO>();
 		List<PostDTO> postDto1= iPost.getPostByIdFormation(id);
-		for(PostDTO p:postDto1) {
+		/*for(PostDTO p:postDto1) {
 			p.setFile(uploadImageService.decompressBytes(p.getFile()));
 			postDto.add(p);
-		}
-		return postDto;
+		}*/
+		return postDto1;
 	}	
 	
 	
@@ -127,10 +127,10 @@ public class PostController {
 	public List<PostDTO> getAllPostPrivate(@PathVariable(name = "idformation") Long idformation){
 		List<PostDTO> postDto=new ArrayList<PostDTO>();
 		List<PostDTO> postDto1= iPost.getAllPostPrivate(true, idformation);
-		for(PostDTO p:postDto1) {
+		/*for(PostDTO p:postDto1) {
 			p.setFile(uploadImageService.decompressBytes(p.getFile()));
 			postDto.add(p);
-		}
+		}*/
 		return postDto;
 			
 	}

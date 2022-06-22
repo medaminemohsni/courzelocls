@@ -43,8 +43,10 @@ public class Phase {
 	    private long idsection;
 	      
 	   
-	    @Field(value = "File")
-	    private byte[] file;
+	  
+	    
+	    @Field(value = "typefile")
+	    private String typefile;
 	    
 	    
 	    

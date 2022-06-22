@@ -55,8 +55,8 @@ public class Post {
 	    private long iduser;
 	    
 	   
-	    @Field(value = "File")
-	    private byte[] file;
+	    @Field(value = "typefile")
+	    private String typefile;
 	    
 	    @Field(value = "test")
 		public Boolean test;

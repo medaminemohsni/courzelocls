@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.dtos.FormationDTO;
 import com.courzelo.classroom.serviceREST.iservicesREST.IServiceFormation;
 
@@ -51,7 +53,7 @@ public class FormationController {
 	
 	@GetMapping("student/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<FormationDTO> getFormationsByStudent(@PathVariable(name = "id") Long id){
+	public List<Formation> getFormationsByStudent(@PathVariable(name = "id") Long id){
 		return iFormation.getFormationByIdStudent(id);
 	}
 	

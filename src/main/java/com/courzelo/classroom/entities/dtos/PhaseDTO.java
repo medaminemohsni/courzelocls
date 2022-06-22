@@ -24,8 +24,9 @@ public class PhaseDTO {
 	public String title;
 	public String postContent;
 	public Date date;
-	public long idformation;
-	public byte[] file;
+	public long idsection;
+	
+	private String typefile;
 	
 	
 }   

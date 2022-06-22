@@ -29,7 +29,8 @@ public class PostDTO {
 	public Date date;
 	public long idformation;
 	public long iduser;
-	public byte[] file;
+	 
+	public String typefile;
 	public Boolean test;
 	
 }   

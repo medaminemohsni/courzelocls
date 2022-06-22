@@ -14,6 +14,7 @@ public interface InscriptionRepository extends MongoRepository<Inscription, Inte
 	//this repository contain all operations of mongodb
 	public  List<Inscription> findByIdEtudiant(long idStudent ) ;
 	public  List<Inscription> findByIdFormation(long idStudent ) ;
+	//public boolean existByIdUserAndIdFormation(long iduser, long idFormation );
 	 
 
 }
