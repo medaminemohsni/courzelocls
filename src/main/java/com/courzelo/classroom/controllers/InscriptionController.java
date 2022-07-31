@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.courzelo.classroom.businesses.iservices.IServiceInscription;
+import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.Userr;
+import com.courzelo.classroom.entities.dtos.FormationDTO;
 import com.courzelo.classroom.entities.dtos.InscriptionDTO;
+import com.courzelo.classroom.serviceREST.iservicesREST.IServiceFormation;
 
 @CrossOrigin
 @RequestMapping(value = "/api/Inscriptions")
@@ -40,6 +43,24 @@ public class InscriptionController {
 
 	}
 
-
+	@GetMapping("/getAllFormationsByUser/{idUser}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<FormationDTO> getAllFormationsByUser(@PathVariable("idUser") Long idUser)
+	
+	{
+		return iInscription.getAllFormationsByUser(idUser);
+		
+	}
+	
+	@GetMapping("/checkFormationByUser/{idFormation}/{idUser}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public boolean checkFormationByUser(@PathVariable("idFormation") Long idFormation , @PathVariable("idUser") Long idUser)
+	
+	{
+		return iInscription.checkFormationByUser(idFormation , idUser);
+		
+	}
+  //get incription by user / return List<Formation>
+  //GetMeetByidFormation / return list<meet>
 
 }

@@ -11,8 +11,10 @@ import com.courzelo.classroom.businesses.iservices.IServiceInscription;
 import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.Inscription;
 import com.courzelo.classroom.entities.Userr;
+import com.courzelo.classroom.entities.dtos.FormationDTO;
 //import com.courzelo.classroom.entities.User;
 import com.courzelo.classroom.entities.dtos.InscriptionDTO;
+import com.courzelo.classroom.repositories.FormationRepository;
 import com.courzelo.classroom.repositories.InscriptionRepository;
 import com.courzelo.classroom.serviceREST.FormationBusinesses;
 //import com.courzelo.classroom.repositories.UserRepository;
@@ -28,6 +30,8 @@ public class InscriptionBusinesses implements IServiceInscription {
        private  SequenceGeneratorService sequenceGeneratorService;
        @Autowired
        private FormationBusinesses formationService;
+       @Autowired
+       FormationRepository formationRepository;
 	@Override
 	public InscriptionDTO addInscription(InscriptionDTO f, Long idEtudiant, Long idFormation) {
 		Inscription inscription = mapper.map(f,Inscription.class);
@@ -51,6 +55,28 @@ public class InscriptionBusinesses implements IServiceInscription {
 	}
 	
 
+
+	@Override
+	public List<FormationDTO> getAllFormationsByUser(Long idUser) {
+		// TODO Auto-generated method stub
+		List<FormationDTO> formationDtoList = new ArrayList<FormationDTO>();
+		List<Inscription> inscriptions=inscriptionRepository.findAllByIdEtudiant(idUser);
+		inscriptions.stream().forEach(elem ->formationDtoList.add(mapper.map(formationRepository.findByIdFormation(elem.getIdFormation()), FormationDTO.class)) );	
+
+
+		return formationDtoList;
+	}
+
+	@Override
+	public boolean checkFormationByUser(long formationId, Long idUser) {
+		// TODO Auto-generated method stub
+	
+		return inscriptionRepository.existsByIdFormationAndIdEtudiant(formationId, idUser);
+	
+	}
+
+	
+	
 
 	
 
