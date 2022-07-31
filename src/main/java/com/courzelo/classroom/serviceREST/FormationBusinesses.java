@@ -36,7 +36,7 @@ public class FormationBusinesses implements IServiceFormation {
 
           @Autowired
           RestTemplateBuilder restTemplateBuilder;
-          private static final String GET_USER_BY_ID_API = "http://localhost:8087/api/auth/getUser/{id}";
+          private static final String GET_USER_BY_ID_API = "https://auth-herokuu.herokuapp.com/api/auth/getUser/{id}";
           
           
 	@Override
