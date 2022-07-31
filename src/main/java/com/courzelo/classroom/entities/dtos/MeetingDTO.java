@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class MeetingDTO {
+	private String id;
 	private long idInstructor;
 	private long idFormation;
-	private long id;
 	private Date date;
 	private String link;
 }

@@ -27,7 +27,7 @@ public class Meeting implements Serializable {
 
 	@Id
 	@Field(value = "id")
-	private long id;
+	private String id;
 	@Field(value = "formation")
 	private long idFormation;
 	@Field(value = "instructor")
