@@ -31,11 +31,9 @@ public class MeetingBusiness implements IserviceMeeting {
 	public List<MeetingDTO> getMeetingsByFormation(long idFormation) {
 		// TODO Auto-generated method stub
 		
-		List<Meeting> meetingList = new ArrayList<Meeting>();
-		List<MeetingDTO> meetingDtoList = new ArrayList<MeetingDTO>();
-
-		meetingList = meetingRepository.findAllByIdFormation(idFormation);
-		meetingDtoList = meetingList.stream().map(elem -> mapper.map(elem, MeetingDTO.class)).collect(Collectors.toList());
-		return meetingDtoList;
+		List<Meeting> meetingList = meetingRepository.findAllByIdFormation(idFormation);
+		
+		return meetingList.stream().map(elem -> mapper.map(elem, MeetingDTO.class)).collect(Collectors.toList());
+		
 	}
 }
