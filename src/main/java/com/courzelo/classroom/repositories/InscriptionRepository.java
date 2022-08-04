@@ -18,6 +18,8 @@ public interface InscriptionRepository extends MongoRepository<Inscription, Inte
 	public List<Inscription> findAllByIdEtudiant(long idStudent);
 	
 	public boolean existsByIdFormationAndIdEtudiant( long idFormation , long idStudent);
+	public int countByIdFormation(long idFormation);
+
 	
 	 
 

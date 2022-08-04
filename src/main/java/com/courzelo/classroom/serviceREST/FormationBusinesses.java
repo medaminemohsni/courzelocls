@@ -15,6 +15,7 @@ import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.Inscription;
 import com.courzelo.classroom.entities.Userr;
 import com.courzelo.classroom.entities.dtos.FormationDTO;
+import com.courzelo.classroom.entities.dtos.InscriptionappDTO;
 import com.courzelo.classroom.repositories.FormationRepository;
 import com.courzelo.classroom.repositories.InscriptionRepository;
 import com.courzelo.classroom.serviceREST.iservicesREST.IServiceFormation;
@@ -156,4 +157,19 @@ public class FormationBusinesses implements IServiceFormation {
    
     }
 	
+	public List<InscriptionappDTO> getStats(Long id)
+	{
+		 List<FormationDTO> formations=  this.getFormtionByIdCreator( id);
+		 List<InscriptionappDTO> result = new ArrayList<InscriptionappDTO>();
+		 
+		 for(FormationDTO item:formations )
+		 {
+			 InscriptionappDTO inscriptionappDTO =  new InscriptionappDTO();
+			 inscriptionappDTO.setIdFormation(item.getIdFormation());
+			 inscriptionappDTO.setNameFormation(item.getCoursename());
+			 inscriptionappDTO.setNbrEtudiants(inscriptionRepository.countByIdFormation(item.getIdFormation()));
+			 result.add(inscriptionappDTO);
+		 }
+		 return result;
+	 }
 }

@@ -18,4 +18,6 @@ public interface IServiceInscription {
  
  public boolean  checkFormationByUser(long formationId,Long idUser  );
  
+ 
+ 
 }

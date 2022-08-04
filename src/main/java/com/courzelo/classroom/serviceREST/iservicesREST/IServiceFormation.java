@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.dtos.FormationDTO;
+import com.courzelo.classroom.entities.dtos.InscriptionappDTO;
 
 
 
@@ -22,6 +23,7 @@ public interface IServiceFormation {
 	public FormationDTO UpdateFormation(long idFormation , FormationDTO RequestFormation); 
 	public void DeleteFormation(long idFormation); 
 	public FormationDTO addQuiz(long id,String idQuiz);
+	public List<InscriptionappDTO> getStats(Long id);
 	
 
 }

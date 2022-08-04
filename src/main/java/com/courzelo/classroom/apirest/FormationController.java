@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.courzelo.classroom.entities.Formation;
 import com.courzelo.classroom.entities.dtos.FormationDTO;
+import com.courzelo.classroom.entities.dtos.InscriptionappDTO;
 import com.courzelo.classroom.serviceREST.iservicesREST.IServiceFormation;
 
 
@@ -95,5 +96,11 @@ public class FormationController {
 	public void deleteCourse(@PathVariable(name = "idFormation") Long idFormation) {
 		iFormation.DeleteFormation(idFormation);
 		
+	}
+	
+	@GetMapping("/getStatUser/{idUser}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<InscriptionappDTO> getStats(@PathVariable(name = "idUser") Long idUser){
+		return iFormation.getStats(idUser);
 	}
 }
