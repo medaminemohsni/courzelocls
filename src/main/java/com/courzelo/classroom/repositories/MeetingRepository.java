@@ -10,5 +10,7 @@ import com.courzelo.classroom.entities.Meeting;
 @Repository
 public interface MeetingRepository extends MongoRepository<Meeting, Integer> {
 	public List<Meeting> findAllByIdFormation(long idFormation);
+	public List<Meeting> findAllByIdInstructor(long idInstructor);
+
 
 }

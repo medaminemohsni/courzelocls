@@ -39,4 +39,11 @@ public class MeetingController {
 		return iserviceMeeting.getMeetingsByFormation(idFormation);
 
 	}
+
+@GetMapping("/getMeetingsByUser/{idUser}")
+@ResponseStatus(HttpStatus.CREATED)
+public List<MeetingDTO> getMeetingsByUser(@PathVariable("idUser") Long idUser) {
+	return iserviceMeeting.getMeetingsByUser(idUser);
+
+}
 }

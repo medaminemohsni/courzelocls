@@ -36,4 +36,14 @@ public class MeetingBusiness implements IserviceMeeting {
 		return meetingList.stream().map(elem -> mapper.map(elem, MeetingDTO.class)).collect(Collectors.toList());
 		
 	}
+	
+	@Override
+	public List<MeetingDTO> getMeetingsByUser(long idUser) {
+		// TODO Auto-generated method stub
+		
+		List<Meeting> meetingList = meetingRepository.findAllByIdInstructor(idUser);
+		
+		return meetingList.stream().map(elem -> mapper.map(elem, MeetingDTO.class)).collect(Collectors.toList());
+		
+	}
 }
