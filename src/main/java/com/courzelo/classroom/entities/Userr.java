@@ -4,9 +4,12 @@ package com.courzelo.classroom.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -38,7 +41,8 @@ public class Userr implements Serializable {
 	private String email;
 
 	private String displayName;
-	private Chat chatId;
+	@DBRef
+	private List<Chat> chatId;
 
 	public Userr(Long id, String providerUserId, String email, String displayName) {
 		super();
