@@ -38,6 +38,7 @@ public class Userr implements Serializable {
 	private String email;
 
 	private String displayName;
+	private Chat chatId;
 
 	public Userr(Long id, String providerUserId, String email, String displayName) {
 		super();
